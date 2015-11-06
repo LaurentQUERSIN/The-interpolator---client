@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>5.1.3f1</UnityVersion>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_1_3;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_1_3;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>Assets\Stormancer\libs\System.Threading.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\ChatPanel.cs" />
+    <Compile Include="Assets\ConnectionDTO.cs" />
+    <Compile Include="Assets\EditorCharts\BarChart.cs" />
+    <Compile Include="Assets\EditorCharts\ClickResponder.cs" />
+    <Compile Include="Assets\EditorCharts\Colors.cs" />
+    <Compile Include="Assets\EditorCharts\LineChart.cs" />
+    <Compile Include="Assets\EditorCharts\PieChart.cs" />
+    <Compile Include="Assets\EditorCharts\Samples\TestInspector.cs" />
+    <Compile Include="Assets\EditorCharts\ViewMode.cs" />
+    <Compile Include="Assets\NetworkManager.cs" />
+    <Compile Include="Assets\PlayerShip.cs" />
+    <Compile Include="Assets\RemotePlayer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\BigEndianBinary.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Binary.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\CollectionDebuggerProxy`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\CollectionOperation.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Contract.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\DictionaryDebuggerProxy`2.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\EnumerableStream.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Extensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Float32Bits.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Float64Bits.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\GlobalSuppressions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\IPackable.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\IUnpackable.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\InvalidMessagePackStreamException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\ItemsUnpacker.Skipping.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\ItemsUnpacker.Unpacking.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\ItemsUnpacker.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessageNotSupportedException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackCode.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackConvert.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackExtendedTypeObject.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObject.Utilities.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObject.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.Enumerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.KeySet.Enumerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.KeySet.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.ValueCollection.Enumerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.ValueCollection.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectDictionary.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackObjectEqualityComparer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessagePackString.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\MessageTypeException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Packer.Nullable.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Packer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\PackerCompatibilityOptions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\PackerUnpackerExtensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\PackingOptions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\ReflectionAbstractions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\AutoMessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\CallbackMessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\CollectionKind.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\CollectionTraits.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DataMemberContract.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultConcreteTypeRepository.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\ArraySegmentMessageSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\DefaultSerializers.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\EnumMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\EnumMessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\MessagePackObjectExtensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\MsgPack_MessagePackExtendedTypeObjectMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\MsgPack_MessagePackObjectMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\NullableMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\NullableMessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_ArraySegment_1MessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_ByteArrayMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_CharArrayMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_Collections_DictionaryEntryMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_Collections_Generic_KeyValuePair_2MessagePackSerializer`2.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_Collections_Specialized_NameValueCollectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_ObjectMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_StringMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_Text_StringBuilderMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_UriMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\DefaultSerializers\System_VersionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmitterFlavor.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\ArrayEmittingSerializerBuilder`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\ContextBasedSerializerEmitter.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\DefaultSerializationMethodGeneratorManager.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\EmittingSerializerBuilderLogics.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\EmittingSerializerBuilder`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\Emittion.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\FieldBasedSerializerEmitter.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\LocalVariableHolder.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\MapEmittingSerializerBuilder`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\SerializationMethodGeneratorManager.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\EmittingSerializers\SerializerEmitter.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\FromExpression.ToConstructor.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\FromExpression.ToMethod.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\FromExpression.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\IMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\IMessagePackSingleObjectSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ISerializerBuilder.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\IdentifierUtility.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\LazyDelegatingMessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\MessagePackMemberAttribute.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\MessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\MessagePackSerializer`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_DictionaryEntry.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Enumerable.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_IDictionaryEnumerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_IDisposable.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_IEnumreator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_KeyValuePair`2.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_MessagePackObject.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_MessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_NotImplementedException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Nullable`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Packer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_SerializationCompatibilityOptions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_SerializationContext.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_String.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Type.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_UnpackHelpers.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Unpacker.Read.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Metadata\_Unpacker.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\NilImplication.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Reflection\GenericTypeExtensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Reflection\ReflectionExtensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Reflection\TracingILGenerator.conveniences.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Reflection\TracingILGenerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Reflection\TracingILGenerator.emits.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionExtensions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ArrayFormatObjectRecflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ArrayRecflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ListReflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\MapFormatObjectReflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\MapReflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ObjectReflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ReflectionSerializerBuilder.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\ReflectionSerializerLogics.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\ReflectionSerializers\SequenceReflectionMessagePackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializationCompatibilityOptions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializationContext.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializationExceptions.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializationMethod.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializationMethodGeneratorOption.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializerBuilder`1.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializerGenerator.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializerRepository.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializerRepository.defaults.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializerTypeKeyRepository.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\SerializingMember.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\Tracer.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\TypeKeyRepository.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Serialization\UnpackHelpers.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\SetOperation.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\StreamPacker.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\SubtreeUnpacker.Unpacking.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\SubtreeUnpacker.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Tuple.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\TupleItems.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnassignedMessageTypeException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnpackException.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacker.Unpacking.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacker.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacking.Numerics.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacking.Others.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacking.Streaming.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacking.String.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Unpacking.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnpackingMode.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnpackingResult.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnpackingStream.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnpackingStreamReader.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\UnsafeNativeMethods.cs" />
+    <Compile Include="Assets\Stormancer\MsgPack\Validation.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\AddressOrGUID.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\BitStream.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ByteQueue.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Cell.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ColumnDescriptor.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\CommandParserInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ConnectionAttemptResult.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ConnectionGraph2.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ConnectionState.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Const.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\DefaultMessageIDTypes.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\DirectoryDeltaTransfer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\DownloadCompleteStruct.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FLP_Printf.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileList.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileListNode.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileListNodeContext.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileListProgress.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileListTransfer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileListTransferCBInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FileProgressStruct.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FilterQuery.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\FullyConnectedMesh2.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\IncrementalReadInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\JoinTeamType.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\LogCommandParser.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\MessageFilter.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\MultilistType.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughClient.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughDebugInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughDebugInterface_PacketLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughDebugInterface_Printf.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughServer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughServerDebugInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughServerDebugInterface_PacketLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatPunchthroughServerDebugInterface_Printf.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatTypeDetectionClient.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NatTypeDetectionServer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NetworkIDManager.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\NetworkIDObject.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\OnFileStruct.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\OutOfBandIdentifiers.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Packet.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PacketConsoleLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PacketFileLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PacketLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PacketPriority.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PacketReliability.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PluginInterface2.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PluginReceiveResult.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PublicKey.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PublicKeyMode.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\PunchthroughConfiguration.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RNSPerSecondMetrics.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNet.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetBPlusTreeRow.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetGUID.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListCell.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListCellPointer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListColumnDescriptor.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListFileListNode.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListFilterQuery.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListRakNetGUID.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListRakString.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListSortQuery.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListSystemAddress.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListTableRow.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListUnsignedInt.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetListUnsignedShort.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetPINVOKE.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetPageRow.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakNetStatistics.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakPeer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakPeerInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakString.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RakWString.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ReadyEvent.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ReadyEventSystemStatus.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\RemoteSystemIndex.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Router2.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Router2DebugInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Row.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_DataStructures__ListT_RakNetSocket2_p_t.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_DataStructures__ListT_RakNet__BitStream_p_t.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_DataStructures__ListT_RakNet__TM_TeamMember_p_t.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_DataStructures__ListT_RakNet__TM_Team_p_t.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_FILE.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_RNS2RecvStruct.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_RakNet__NatPunchthroughClient__SendPing.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_RakNet__ReadyEvent__RemoteSystem.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_RakNet__TCPInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_RakNet__TM_World__JoinRequestHelper.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_bool.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_double.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_p_RakNet__TM_Team.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_p_RakNet__TM_TeamMember.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_p_RakNet__TM_World.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_unsigned_char.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_unsigned_int.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_unsigned_long_long.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_unsigned_short.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_void.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SWIGTYPE_p_wchar_t.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SimpleMutex.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SocketDescriptor.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SortQuery.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\StartupResult.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\SystemAddress.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TMTopology.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TM_Team.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TM_TeamMember.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TM_World.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\Table.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TeamManager.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TeamSelection.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\ThreadsafePacketLogger.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\TransportInterface.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPForwarder.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPForwarderResult.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPProxyClient.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPProxyClientResultHandler.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPProxyCoordinator.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPProxyServer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UDPProxyServerResultHandler.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UnsignedIntPointer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\UnsignedShortPointer.cs" />
+    <Compile Include="Assets\Stormancer\Raknet.scharp\uint24_t.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\BPSLimitationType.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\ClientException.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\DisposableAction.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\Extensions\PacketExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\IConnection.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\IConnectionStatistics.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\ILogger.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\IScene.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\IScenePeer.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\ISerializer.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\Models\ConnectionData.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\Models\RouteDto.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\Packet.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\PacketPriority.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\PacketReliability.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Core\Route.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\ApiClient.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Client.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Configuration\ClientConfiguration.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\Buffers.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\DictionaryExtension.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\SceneExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\StreamExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\IConnectionManager.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\ILogger.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\IPacketProcessor.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\IScheduler.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\ITransport.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BSStream.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BufferPool\BufferInterfaces.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BufferPool\BufferObjects.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BufferPool\MemoryInterfaces.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BufferPool\MemoryObjects.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\BufferPool\StreamObjects.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\DefaultPacketDispatcher.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\DefaultScheduler.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\IPacketDispatcher.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\ITokenHandler.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\Modules\IModule.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\MsgPackMapSerializer.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Infrastructure\MsgPackSerializer.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\MessageIDTypes.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\ConnectionCreatedContext.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\ConnectionWrapper.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\IClientPlugin.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\IConnectionHandler.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\LogStream.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\PluginBuildContext.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\RpcClientPlugin.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Plugins\RpcRequestContext.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Processors\RequestProcessor.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Processors\SceneDispatcher.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Scene.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SceneEndpoint.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\ScenePeer.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\StormanceEditorDataCollector.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\StormancerEditorPlugin.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\ConnectedToSceneMsg.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\ConnectionResult.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\Empty.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\SceneInfosDto.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\SystemResponse.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemRequestIDTypes.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Transports\RaknetConnection.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Transports\RaknetTransport.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Transports\WebSocketClientConnection.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Transports\WebSocketClientTransport.cs" />
+    <Compile Include="Assets\Stormancer\StormancerActionHandler.cs" />
+    <Compile Include="Assets\Stormancer\StormancerEditorWindow.cs" />
+    <Compile Include="Assets\Stormancer\StormancerResolver.cs" />
+    <Compile Include="Assets\Stormancer\StormancerSceneBehaviour.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Asynchronous\WebRequestExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\BooleanDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\CompositeDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\Disposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\DisposableExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\ICancelable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\MultipleAssignmentDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\RefCountDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\ScheduledDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\SerialDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Disposables\SingleAssignmentDisposable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\EventPattern.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\ImmutableList.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\ListObserver.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\PriorityQueue.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\ReflectionAccessor.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\ScheduledItem.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\InternalUtil\ThreadSafeQueueWorker.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Notification.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Notifiers\BooleanNotifier.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Notifiers\CountNotifier.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Notifiers\ScheduledNotifier.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Aggregate.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Binding.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Blocking.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Concatenate.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Concurrency.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Conversions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Creation.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.ErrorHandling.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Events.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.FromAsync.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Joins.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Paging.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.Time.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Observer.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Schedulers\CurrentThreadScheduler.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Schedulers\ImmediateScheduler.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Schedulers\Scheduler.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Schedulers\ThreadPoolScheduler.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\AsyncSubject.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\BehaviorSubject.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\ConnectableObservable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\ISubject.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\ReplaySubject.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Subjects\Subject.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\System\IObservable.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\System\IObserver.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\System\IProgress.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\System\Tuple.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\System\Unit.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\TimeInterval.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\Timestamped.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\AotSafeExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\AsyncOperationExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\CancellationToken.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Diagnostics\LogEntry.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Diagnostics\LogEntryExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Diagnostics\Logger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Diagnostics\ObservableLogger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Diagnostics\UnityDebugSink.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\InspectableReactiveProperty.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\InspectorDisplayDrawer.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\LazyTask.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\LifetimeDisposableExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\MainThreadDispatcher.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\MainThreadScheduler.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Observable.Unity.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ObservableMonoBehaviour.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ObservableWWW.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ObserveExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ReactiveCollection.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ReactiveDictionary.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ReactiveProperty.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\ScenePlaybackDetector.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableAnimatorTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableCanvasGroupChangedTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableCollision2DTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableCollisionTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableDestroyTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableEnableTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableEventTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableFixedUpdateTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableLateUpdateTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableMouseTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableRectTransformTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableStateMachineTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTransformChangedTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTrigger2DTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTriggerBase.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTriggerExtensions.Component.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTriggerExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableTriggerTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableUpdateTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\Triggers\ObservableVisibleTrigger.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\TypedMonoBehaviour.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\UnityEventExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\UnityGraphicExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityEngineBridge\UnityUIComponentExtensions.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityWinRTBridge\Thread.cs" />
+    <Compile Include="Assets\Stormancer\UniRx\UnityWinRTBridge\ThreadPoolScheduler_UnityWinRT.cs" />
+    <Compile Include="Assets\Stormancer\Unity.Tasks\ObservableExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Unity.Tasks\TaskExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Unity.Tasks\TaskHelper.cs" />
+    <Compile Include="Assets\Stormancer\UnityHttp\HttpStatusCode.cs" />
+    <Compile Include="Assets\Stormancer\UnityHttp\IRequest.cs" />
+    <Compile Include="Assets\Stormancer\UnityHttp\IResponse.cs" />
+    <Compile Include="Assets\Stormancer\UnityHttp\Request.cs" />
+    <Compile Include="Assets\Stormancer\UnityHttp\Response.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\AssemblyInfo.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\AuthenticationChallenge.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\AuthenticationResponse.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\ByteOrder.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\CloseEventArgs.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\CloseStatusCode.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\CompressionMethod.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\ErrorEventArgs.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Ext.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Fin.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\HandshakeBase.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\HandshakeRequest.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\HandshakeResponse.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\LogData.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\LogLevel.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Logger.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Mask.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\MessageEventArgs.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\AuthenticationSchemeSelector.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\AuthenticationSchemes.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\ChunkStream.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\ChunkedInputStream.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\Cookie.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\CookieCollection.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\CookieException.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\EndPointListener.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\EndPointManager.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpBasicIdentity.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpConnection.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpDigestIdentity.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpHeaderInfo.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpHeaderType.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListener.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListenerContext.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListenerException.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListenerPrefixCollection.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListenerRequest.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpListenerResponse.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpStatusCode.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpStreamAsyncResult.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpUtility.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\HttpVersion.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\ListenerAsyncResult.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\ListenerPrefix.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\NetworkCredential.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\RequestStream.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\ResponseStream.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\Security\SslStream.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\WebHeaderCollection.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\WebSockets\HttpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\WebSockets\TcpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Net\WebSockets\WebSocketContext.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Opcode.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\PayloadData.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Rsv.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\HttpRequestEventArgs.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\HttpServer.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\IWebSocketSession.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\ServerState.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\WebSocketServer.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\WebSocketService.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\WebSocketServiceHost.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\WebSocketServiceHostManager.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\Server\WebSocketSessionManager.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\WebSocket.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\WebSocketException.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\WebSocketState.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\WsFrame.cs" />
+    <Compile Include="Assets\Stormancer\websocket-sharp\WsStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\EditorCharts\AdditionLicenseInformation.txt" />
+    <None Include="Assets\EditorCharts\QuickStart.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+</Project>

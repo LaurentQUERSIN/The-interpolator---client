@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.The Interpolator.CSharp", "UnityVS.The Interpolator.CSharp.csproj", "{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.The Interpolator.CSharp.Editor", "UnityVS.The Interpolator.CSharp.Editor.csproj", "{D3A634BE-EAA1-9244-FA5C-EAD1DCCD65DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9709F68A-7304-9BE7-F4AF-EC6681D63A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A634BE-EAA1-9244-FA5C-EAD1DCCD65DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A634BE-EAA1-9244-FA5C-EAD1DCCD65DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A634BE-EAA1-9244-FA5C-EAD1DCCD65DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A634BE-EAA1-9244-FA5C-EAD1DCCD65DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
