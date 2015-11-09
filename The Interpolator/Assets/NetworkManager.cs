@@ -111,15 +111,15 @@ public class NetworkManager : MonoBehaviour
         using (var reader = new BinaryReader(packet.Stream))
         {
             var id = reader.ReadInt64();
-            if (id != _id && _id > -5000)
-            {
+            //if (id != _id)
+            //{
                 MainThread.Post(() =>
                 {
                     Debug.Log("new remote player id = " + id);
                     GameObject np = Instantiate(remotePlayerShipPrefab);
                     _remotePlayers.Add(id, np);
                 });
-            }
+            //}
         }
     }
 
@@ -206,12 +206,6 @@ public class NetworkManager : MonoBehaviour
                     writer.Write(playerShip.transform.position.x);
                     writer.Write(playerShip.transform.position.y);
                     writer.Write(playerShip.transform.position.z);
-
-                    var vect = playerShip.transform.position - _lastPos;
-                    _lastPos = playerShip.transform.position;
-                    writer.Write(vect.x);
-                    writer.Write(vect.y);
-                    writer.Write(vect.z);
 
                     writer.Write(playerShip.transform.rotation.x);
                     writer.Write(playerShip.transform.rotation.y);

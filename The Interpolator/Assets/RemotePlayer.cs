@@ -14,9 +14,12 @@ public class RemotePlayer : MonoBehaviour {
     private float _currentSpan;
     private float _targetSpan = 0.1f;
 
+    public bool _bezier = false;
+
     public void SetNextPos(Vector3 pos, Vector3 vect, Quaternion rot)
     {
         Debug.Log(pos + "  " + vect + "  " + rot);
+
         _lastPos = transform.position;
         _lastVect = _targetVect;
         _lastRot = transform.rotation;
@@ -34,7 +37,16 @@ public class RemotePlayer : MonoBehaviour {
         if (_currentSpan < _targetSpan)
         {
             float perc = _currentSpan / _targetSpan;
-            transform.position = Vector3.Lerp(_lastPos, _targetPos, perc);
+            if (_bezier == false)
+                transform.position = Vector3.Lerp(_lastPos, _targetPos, perc);
+            else
+            {
+                var l1 = Vector3.Lerp(_lastPos, _lastPos + _lastVect, perc);
+                var l2 = Vector3.Lerp(_lastPos + _lastVect, _targetPos - _targetVect, perc);
+                var l3 = Vector3.Lerp(l1, l2, perc);
+                var l4 = Vector3.Lerp(_targetPos - _targetVect, _targetPos, perc);
+                transform.position = Vector3.Lerp(l3, l4, perc);
+            }
             transform.rotation = Quaternion.Lerp(_lastRot, _targetRot, perc);
         }
         else
