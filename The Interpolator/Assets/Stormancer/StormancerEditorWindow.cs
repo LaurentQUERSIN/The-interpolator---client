@@ -115,6 +115,7 @@ namespace Stormancer.EditorPluginWindow
                 {
                     c.exportLogs = false;
                 }
+                EditorGUILayout.LabelField("clock: " + c.client.Clock);
 
                 GUILayout.EndHorizontal();
 

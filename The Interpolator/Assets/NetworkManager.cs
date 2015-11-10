@@ -158,6 +158,8 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    private long _lastStamp = 0;
+
     public void OnUpdatePosition(Packet<IScenePeer> packet)
     {
         using (var reader = new BinaryReader(packet.Stream))
@@ -165,6 +167,7 @@ public class NetworkManager : MonoBehaviour
             while (reader.BaseStream.Position < reader.BaseStream.Length)
             {
                 var id = reader.ReadInt64();
+                var stamp = reader.ReadInt64();
                 var x = reader.ReadSingle();
                 var y = reader.ReadSingle();
                 var z = reader.ReadSingle();
@@ -179,7 +182,7 @@ public class NetworkManager : MonoBehaviour
                 var rw = reader.ReadSingle();
 
                 GameObject np;
-                if (_remotePlayers.TryGetValue(id, out np))
+                if ( stamp > _lastStamp && _remotePlayers.TryGetValue(id, out np))
                 {
                     MainThread.Post(() =>
                     {
@@ -191,11 +194,12 @@ public class NetworkManager : MonoBehaviour
     }
 
     private long _lastupdate = 0;
+    private long _interSpan = 200;
     private Vector3 _lastPos = Vector3.zero;
 
 	void Update ()
     {
-	    if (_client != null && _scene != null && _scene.Connected && _lastupdate + 100 < _client.Clock)
+	    if (_client != null && _scene != null && _scene.Connected && _lastupdate + _interSpan < _client.Clock)
         {
             _lastupdate = _client.Clock;
             _scene.SendPacket("update_position", w =>
@@ -203,16 +207,23 @@ public class NetworkManager : MonoBehaviour
                 using (var writer = new BinaryWriter(w, System.Text.Encoding.UTF8))
                 {
                     writer.Write(_id);
+                    writer.Write(_client.Clock);
                     writer.Write(playerShip.transform.position.x);
                     writer.Write(playerShip.transform.position.y);
                     writer.Write(playerShip.transform.position.z);
+
+                    var prb = playerShip.GetComponent<Rigidbody>();
+                    writer.Write(prb.velocity.x * 1000 );
+                    writer.Write(prb.velocity.y * 1000 );
+                    writer.Write(prb.velocity.z * 1000 );
 
                     writer.Write(playerShip.transform.rotation.x);
                     writer.Write(playerShip.transform.rotation.y);
                     writer.Write(playerShip.transform.rotation.z);
                     writer.Write(playerShip.transform.rotation.w);
+                    Debug.Log("-> " + playerShip.transform.position + "  " + prb.velocity * 1000 / (1000 / _interSpan) + "  " + playerShip.transform.rotation);
                 }
-            }, PacketPriority.MEDIUM_PRIORITY, PacketReliability.UNRELIABLE_SEQUENCED);
+            }, PacketPriority.MEDIUM_PRIORITY, PacketReliability.UNRELIABLE);
         }
 	}
 
