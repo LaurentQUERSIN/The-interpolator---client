@@ -186,7 +186,7 @@ public class NetworkManager : MonoBehaviour
                 {
                     MainThread.Post(() =>
                     {
-                        np.GetComponent<RemotePlayer>().SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
+                        np.GetComponent<InterpolatorPlugin>().SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
                     });
                 }
             }

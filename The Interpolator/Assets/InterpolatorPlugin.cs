@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections;
+using System;
 
-public class RemotePlayer : MonoBehaviour {
-    
+public class InterpolatorPlugin : SynchBehaviourBase
+{
     private Vector3 _lastPos = Vector3.zero;
     private Vector3 _lastVect = Vector3.zero;
     private Quaternion _lastRot = Quaternion.identity;
@@ -17,15 +19,51 @@ public class RemotePlayer : MonoBehaviour {
     private Vector3 P2 = Vector3.zero;
     private float _currentSpan;
     private float _targetSpan = 0.2f;
+    
+    private bool _bezier = true;
 
-    public bool testExtrapol = false;
-    public bool _bezier = true;
+    public void UseBezierSpline(bool b)
+    {
+        _bezier = b;
+    }
+
+    private void SetTimeSpan(float t)
+    {
+        _targetSpan = t;
+    }
+
+    public override void SendChanges(Stream stream)
+    {
+        return;
+    }
+
+    public override void ApplyChanges(Stream stream)
+    {
+        using (var reader = new BinaryReader(stream))
+        {
+            var stamp = reader.ReadInt64();
+            var x = reader.ReadSingle();
+            var y = reader.ReadSingle();
+            var z = reader.ReadSingle();
+
+            var vx = reader.ReadSingle();
+            var vy = reader.ReadSingle();
+            var vz = reader.ReadSingle();
+
+            var rx = reader.ReadSingle();
+            var ry = reader.ReadSingle();
+            var rz = reader.ReadSingle();
+            var rw = reader.ReadSingle();
+
+            if (LastChanged < stamp)
+            {
+                SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
+            }
+        }
+    }
 
     public void SetNextPos(Vector3 pos, Vector3 vect, Quaternion rot)
     {
-        if (testExtrapol == true)
-            return;
-        Debug.Log("<- " + pos + "  " + vect + "  " + rot);
         _lastPos = transform.position;
         _lastVect = _targetVect;
         _lastRot = transform.rotation;
@@ -41,15 +79,6 @@ public class RemotePlayer : MonoBehaviour {
        Debug.DrawLine(_lastPos, P1, Color.gray, 1.0f);
        Debug.DrawLine(P1, P2, Color.gray, 1.0f);
        Debug.DrawLine(P2, _targetPos, Color.gray, 1.0f);
-    }
-
-    void Start()
-    {
-        Debug.DrawLine(_lastPos, _lastPos + _lastVect * _targetSpan / 3, Color.gray, 1.0f);
-        Debug.DrawLine(_lastPos + _lastVect * _targetSpan / 3, _targetPos - _targetVect * _targetSpan / 3, Color.gray, 1.0f);
-        Debug.DrawLine(_targetPos - _targetVect * _targetSpan / 3, _targetPos, Color.gray, 1.0f);
-        P1 = _lastPos + _lastVect * _targetSpan / 3;
-        P2 = _targetPos - _targetVect * _targetSpan / 3;
     }
 
     void Update ()
@@ -89,10 +118,6 @@ public class RemotePlayer : MonoBehaviour {
             P1 = _lastPos + _lastVect * _targetSpan / 3;
             P2 = _targetPos - _targetVect * _targetSpan / 3;
             _currentSpan = 0;
-
-            //_currentSpan = 0;
-            //this.SetNextPos(_targetPos + _targetVect, _targetVect, _targetRot);
-
         }
 	}
 }

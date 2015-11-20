@@ -80,9 +80,12 @@
     <Compile Include="Assets\EditorCharts\PieChart.cs" />
     <Compile Include="Assets\EditorCharts\Samples\TestInspector.cs" />
     <Compile Include="Assets\EditorCharts\ViewMode.cs" />
+    <Compile Include="Assets\ISynchBehaviour.cs" />
+    <Compile Include="Assets\InterpolatorPlugin.cs" />
     <Compile Include="Assets\NetworkManager.cs" />
     <Compile Include="Assets\PlayerShip.cs" />
-    <Compile Include="Assets\RemotePlayer.cs" />
+    <Compile Include="Assets\RemoteScene.cs" />
+    <Compile Include="Assets\ReplicatorBehaviour.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\BigEndianBinary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\Binary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\CollectionDebuggerProxy`1.cs" />
@@ -389,6 +392,7 @@
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\DictionaryExtension.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\SceneExtensions.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\StreamExtensions.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\IClock.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\IConnectionManager.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\ILogger.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\IPacketProcessor.cs" />
@@ -616,6 +620,9 @@
     <Compile Include="Assets\Stormancer\websocket-sharp\WebSocketState.cs" />
     <Compile Include="Assets\Stormancer\websocket-sharp\WsFrame.cs" />
     <Compile Include="Assets\Stormancer\websocket-sharp\WsStream.cs" />
+    <Compile Include="Assets\StormancerClientProvider.cs" />
+    <Compile Include="Assets\StormancerIRemoteLogic.cs" />
+    <Compile Include="Assets\StormancerNetworkIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\EditorCharts\AdditionLicenseInformation.txt" />
