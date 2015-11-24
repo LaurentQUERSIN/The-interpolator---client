@@ -20,7 +20,7 @@ namespace Stormancer
 
         void Awake()
         {
-            GameObject temp = GameObject.Find("StormancerClientProvider");
+            GameObject temp = GameObject.Find("StormancerNetworkManager");
             if (temp != null)
             {
                 _clientProvider = temp.GetComponent<StormancerClientProvider>();
@@ -28,7 +28,7 @@ namespace Stormancer
             }
             else
             {
-                Debug.LogError("cannot find stormancerClientProvider");
+                Debug.LogError("cannot find StormancerNetworkManager");
             }
         }
 
@@ -50,7 +50,7 @@ namespace Stormancer
             }
             else
             {
-                Debug.LogError("Cannot find StomrnacerClientProvider");
+                Debug.LogError("Cannot find StormancerNetworkManager");
             }
         }
 
@@ -72,6 +72,12 @@ namespace Stormancer
                     }
                 }
             });
+        }
+
+        void OnLoading()
+        {
+            if (DisconnectOnLoad == true)
+                Scene.Disconnect();
         }
     }
 }

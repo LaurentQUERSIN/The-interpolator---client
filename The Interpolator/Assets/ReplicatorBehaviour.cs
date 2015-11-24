@@ -12,13 +12,19 @@ using System;
 
 namespace Stormancer
 {
+    public struct ReplicatorDTO
+    {
+        public uint Id;
+        public int PrefabId;
+    }
+
     public class ReplicatorBehaviour : StormancerIRemoteLogic
     {
 
         public List<GameObject> Prefabs;
         public List<StormancerNetworkIdentity> LocalObjectToSync;
-        public ConcurrentDictionary<long, StormancerNetworkIdentity> SlaveObjects;
-        public ConcurrentDictionary<long, StormancerNetworkIdentity> MastersObjects;
+        public ConcurrentDictionary<uint, StormancerNetworkIdentity> SlaveObjects;
+        public ConcurrentDictionary<uint, StormancerNetworkIdentity> MastersObjects;
 
         private IClock Clock;
 
@@ -27,96 +33,75 @@ namespace Stormancer
             if (s != null)
             {
                 Clock = s.DependencyResolver.GetComponent<IClock>();
-                s.AddRoute("CreateSynch", OnCreateSynch);
-                s.AddRoute("DestroySynch", OnDestroySynch);
+                s.AddRoute("CreateObject", OnCreateObject);
+                s.AddRoute("DestroyObject", OnDestroyObject);
                 s.AddRoute("ForceUpdate", OnForceUpdate);
-                s.AddRoute("UpdateSynch", OnUpdateSynch);
+                s.AddRoute("UpdateObject", OnUpdateObject);
             }
         }
 
         public override void OnConnected()
         {
-            int i = 0;
             foreach (StormancerNetworkIdentity ni in LocalObjectToSync)
             {
-                RemoteScene.Scene.SendPacket("RegisterObject", s =>
-                {
-                    using (var writer = new BinaryWriter(s, System.Text.Encoding.UTF8))
-                    {
-
-                        writer.Write(ni.PrefabId);
-                        writer.Write(i);
-                    }
-                });
+                AddObjectToSynch(ni);
             }
         }
 
         public void AddObjectToSynch(StormancerNetworkIdentity ni)
         {
-            LocalObjectToSync.Add(ni);
-            RemoteScene.Scene.SendPacket("RegisterObject", s =>
+            var dto = new ReplicatorDTO();
+            dto.PrefabId = ni.PrefabId;
+            RemoteScene.Scene.RpcTask<ReplicatorDTO, ReplicatorDTO>("RegisterObject", dto).ContinueWith(response =>
             {
-                using (var writer = new BinaryWriter(s, System.Text.Encoding.UTF8))
+                dto = response.Result;
+                ni.Id = dto.Id;
+                MastersObjects.TryAdd(dto.Id, ni);
+                if (SlaveObjects.ContainsKey(dto.Id))
                 {
-                    writer.Write(ni.PrefabId);
-                    writer.Write(LocalObjectToSync.Count - 1);
+                    StormancerNetworkIdentity trash;
+                    SlaveObjects.TryRemove(dto.Id, out trash);
+                    MainThread.Post(() =>
+                    {
+                        Destroy(trash.gameObject);
+                    });
                 }
             });
         }
 
-        private void OnCreateSynch(Packet<IScenePeer> packet)
+        public void RemoveSynchObject(StormancerNetworkIdentity ni)
         {
-            using (var reader = new BinaryReader(packet.Stream))
+            var dto = new ReplicatorDTO();
+            dto.Id = ni.Id;
+            RemoteScene.Scene.Send<ReplicatorDTO>("RemoveObject", dto);
+            MastersObjects.TryRemove(ni.Id, out ni);
+        }
+
+        private void OnCreateObject(Packet<IScenePeer> packet)
+        {
+            var dto = packet.ReadObject<ReplicatorDTO>();
+
+            if (dto.PrefabId < Prefabs.Count && SlaveObjects.ContainsKey(dto.Id) == false && MastersObjects.ContainsKey(dto.Id) == false)
             {
-
-                var isMaster = reader.ReadBoolean();
-
-                if (isMaster == true)
+                MainThread.Post(() =>
                 {
-                    var id = reader.ReadInt64();
-                    var pos = reader.ReadInt32();
-                    MastersObjects.TryAdd(id, LocalObjectToSync[pos]);
-                    if (SlaveObjects.ContainsKey(id))
-                    {
-                        StormancerNetworkIdentity temp;
-                        SlaveObjects.TryRemove(id, out temp);
-                        MainThread.Post(() =>
-                        {
-                            Destroy(temp.gameObject);
-                        });
-                    }
-                }
-                else
-                {
-                    var id = reader.ReadInt64();
-                    var pb = reader.ReadInt32();
-
-                    if (pb < Prefabs.Count && SlaveObjects.ContainsKey(id) == false)
-                    {
-                        MainThread.Post(() =>
-                        {
-                            var SynchedGO = Instantiate(Prefabs[pb]);
-                            SlaveObjects.TryAdd(id, SynchedGO.GetComponent<StormancerNetworkIdentity>());
-                        });
-                    }
-                }
+                    var SynchedGO = Instantiate(Prefabs[dto.PrefabId]);
+                    SlaveObjects.TryAdd(dto.Id, SynchedGO.GetComponent<StormancerNetworkIdentity>());
+                });
             }
         }
 
-        private void OnDestroySynch(Packet<IScenePeer> packet)
+        private void OnDestroyObject(Packet<IScenePeer> packet)
         {
-            using (var reader = new BinaryReader(packet.Stream))
-            {
-                var id = reader.ReadInt64();
-                StormancerNetworkIdentity DestroyedGO;
+            var dto = packet.ReadObject<ReplicatorDTO>();
+            StormancerNetworkIdentity DestroyedGO;
 
-                if (SlaveObjects.TryRemove(id, out DestroyedGO))
+            if (SlaveObjects.TryRemove(dto.Id, out DestroyedGO))
+            {
+                MainThread.Post(() =>
                 {
-                    MainThread.Post(() =>
-                    {
-                        Destroy(DestroyedGO.gameObject);
-                    });
-                }
+                    Destroy(DestroyedGO.gameObject);
+                });
             }
         }
 
@@ -124,7 +109,7 @@ namespace Stormancer
         {
             using (var reader = new BinaryReader(packet.Stream))
             {
-                var id = reader.ReadInt64();
+                var id = reader.ReadUInt32();
                 var SBid = reader.ReadByte();
                 StormancerNetworkIdentity SO;
 
@@ -138,11 +123,11 @@ namespace Stormancer
             }
         }
 
-        private void OnUpdateSynch(Packet<IScenePeer> packet)
+        private void OnUpdateObject(Packet<IScenePeer> packet)
         {
             using (var reader = new BinaryReader(packet.Stream))
             {
-                var id = reader.ReadInt64();
+                var id = reader.ReadUInt32();
                 var SBid = reader.ReadByte();
                 StormancerNetworkIdentity SO;
 
@@ -160,13 +145,14 @@ namespace Stormancer
         {
             if (RemoteScene != null && RemoteScene.Scene != null && RemoteScene.Scene.Connected && MastersObjects.Count > 0)
             {
-                foreach (KeyValuePair<long, StormancerNetworkIdentity> kvp in MastersObjects)
+                foreach (KeyValuePair<uint, StormancerNetworkIdentity> kvp in MastersObjects)
                 {
                     int i = 0;
                     foreach (SynchBehaviourBase SB in kvp.Value.SynchBehaviours)
                     {
                         if (SB.LastSend + SB.getTimeBetweenUpdates() < Clock.Clock)
                         {
+                            SB.LastSend = Clock.Clock;
                             RemoteScene.Scene.SendPacket("update_synchedObject", stream =>
                             {
                                 using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8))

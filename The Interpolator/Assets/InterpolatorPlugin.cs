@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections;
 using System;
 
-public class InterpolatorPlugin : SynchBehaviourBase
+public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
 {
     private Vector3 _lastPos = Vector3.zero;
     private Vector3 _lastVect = Vector3.zero;
@@ -57,6 +57,7 @@ public class InterpolatorPlugin : SynchBehaviourBase
 
             if (LastChanged < stamp)
             {
+                LastChanged = stamp;
                 SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
             }
         }

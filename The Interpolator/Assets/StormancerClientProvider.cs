@@ -34,6 +34,7 @@ namespace Stormancer
                         Debug.LogWarning("Cannot create client without accoutID and applicationName");
                         throw new System.Exception("Cannot create client without accoutID and applicationName");
                     }
+                    UniRx.MainThreadDispatcher.Initialize();
                     var config = ClientConfiguration.ForAccount(accountId, applicationName);
                     _clientRef = new Client(config);
                 }
