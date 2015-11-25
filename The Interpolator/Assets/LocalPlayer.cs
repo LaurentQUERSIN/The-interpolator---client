@@ -9,24 +9,27 @@ public class LocalPlayer : Stormancer.SynchBehaviourBase
     private Stormancer.IClock Clock;
     private Rigidbody PlayerRigidbody;
 
-    void OnAwake()
-    {
-        Clock = Scene.Scene.DependencyResolver.GetComponent<Stormancer.IClock>();
-        PlayerRigidbody = this.GetComponent<Rigidbody>();
-    }
-
     public override void SendChanges(Stream stream)
     {
+        if (Clock == null)
+        {
+            Clock = Scene.Scene.DependencyResolver.GetComponent<Stormancer.IClock>();
+        }
+        if (PlayerRigidbody == null)
+        {
+            PlayerRigidbody = this.GetComponent<Rigidbody>();
+        }
         using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8))
         {
+
             writer.Write(Clock.Clock);
             writer.Write(this.transform.position.x);
             writer.Write(this.transform.position.y);
             writer.Write(this.transform.position.z);
 
-            writer.Write(PlayerRigidbody.velocity.x * 1000);
-            writer.Write(PlayerRigidbody.velocity.y * 1000);
-            writer.Write(PlayerRigidbody.velocity.z * 1000);
+            writer.Write(PlayerRigidbody.velocity.x);
+            writer.Write(PlayerRigidbody.velocity.y);
+            writer.Write(PlayerRigidbody.velocity.z);
 
             writer.Write(this.transform.rotation.x);
             writer.Write(this.transform.rotation.y);

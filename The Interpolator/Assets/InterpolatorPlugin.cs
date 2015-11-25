@@ -9,8 +9,6 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
     private Vector3 _lastVect = Vector3.zero;
     private Quaternion _lastRot = Quaternion.identity;
 
-    private Vector3 _accel = Vector3.zero;
-
     private Vector3 _targetPos = Vector3.zero;
     private Vector3 _targetVect = Vector3.zero;
     private Quaternion _targetRot = Quaternion.identity;
@@ -54,17 +52,21 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
             var ry = reader.ReadSingle();
             var rz = reader.ReadSingle();
             var rw = reader.ReadSingle();
-
+            
             if (LastChanged < stamp)
             {
                 LastChanged = stamp;
-                SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
+                Stormancer.MainThread.Post(() =>
+                {
+                    SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
+                });
             }
         }
     }
 
     public void SetNextPos(Vector3 pos, Vector3 vect, Quaternion rot)
     {
+        
         _lastPos = transform.position;
         _lastVect = _targetVect;
         _lastRot = transform.rotation;

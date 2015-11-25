@@ -46,6 +46,7 @@ namespace Stormancer
                     {
                         logic.Init(Scene);
                     }
+                    ConnectScene();
                 }
             }
             else
@@ -62,14 +63,14 @@ namespace Stormancer
                 {
                     Debug.Log("connected to scene: " + SceneId);
                     Connected = true;
-                }
-                else
-                {
-                    Debug.LogWarning("failed to connect to scene: " + SceneId);
                     foreach (StormancerIRemoteLogic remotelogic in LocalLogics)
                     {
                         remotelogic.OnConnected();
                     }
+                }
+                else
+                {
+                    Debug.LogWarning("failed to connect to scene: " + SceneId);
                 }
             });
         }

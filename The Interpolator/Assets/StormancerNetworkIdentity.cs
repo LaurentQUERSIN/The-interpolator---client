@@ -12,9 +12,10 @@ namespace Stormancer
 
         public List<SynchBehaviourBase> SynchBehaviours { get; set; }
         
-        void OnAwake()
+        void Awake()
         {
             SynchBehaviours = new List<SynchBehaviourBase>(this.GetComponents<SynchBehaviourBase>());
+            Debug.Log("create network identity with " + SynchBehaviours.Count + " behaviours");
         } 
     }
 }

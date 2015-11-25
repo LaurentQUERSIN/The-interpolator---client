@@ -66,6 +66,7 @@ namespace Stormancer
                     Debug.LogWarning("the scene " + sceneId + " have already been retrieved");
                     return null;
                 }
+                Debug.Log("Retreived remote scene");
                 _scenes.Add(t.Result);
                 return t.Result;
             }).Result;
@@ -75,6 +76,15 @@ namespace Stormancer
         {
             //to do;
             return null;
+        }
+
+        void OnApplicationQuit()
+        {
+            foreach(Scene s in _scenes)
+            {
+                s.Disconnect();
+            }
+            _client.Disconnect();
         }
     }
 }

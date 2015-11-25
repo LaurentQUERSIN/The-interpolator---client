@@ -23,8 +23,8 @@ namespace Stormancer
 
         public List<GameObject> Prefabs;
         public List<StormancerNetworkIdentity> LocalObjectToSync;
-        public ConcurrentDictionary<uint, StormancerNetworkIdentity> SlaveObjects;
-        public ConcurrentDictionary<uint, StormancerNetworkIdentity> MastersObjects;
+        public ConcurrentDictionary<uint, StormancerNetworkIdentity> SlaveObjects = new ConcurrentDictionary<uint, StormancerNetworkIdentity>();
+        public ConcurrentDictionary<uint, StormancerNetworkIdentity> MastersObjects = new ConcurrentDictionary<uint, StormancerNetworkIdentity>();
 
         private IClock Clock;
 
@@ -32,6 +32,7 @@ namespace Stormancer
         {
             if (s != null)
             {
+                Debug.Log("replicator initializing");
                 Clock = s.DependencyResolver.GetComponent<IClock>();
                 s.AddRoute("CreateObject", OnCreateObject);
                 s.AddRoute("DestroyObject", OnDestroyObject);
@@ -42,6 +43,7 @@ namespace Stormancer
 
         public override void OnConnected()
         {
+            Debug.Log("replicator connected");
             foreach (StormancerNetworkIdentity ni in LocalObjectToSync)
             {
                 AddObjectToSynch(ni);
@@ -50,10 +52,12 @@ namespace Stormancer
 
         public void AddObjectToSynch(StormancerNetworkIdentity ni)
         {
+            Debug.Log("sending registration request");
             var dto = new ReplicatorDTO();
             dto.PrefabId = ni.PrefabId;
             RemoteScene.Scene.RpcTask<ReplicatorDTO, ReplicatorDTO>("RegisterObject", dto).ContinueWith(response =>
             {
+                Debug.Log("received registration");
                 dto = response.Result;
                 ni.Id = dto.Id;
                 MastersObjects.TryAdd(dto.Id, ni);
@@ -71,6 +75,7 @@ namespace Stormancer
 
         public void RemoveSynchObject(StormancerNetworkIdentity ni)
         {
+            Debug.Log("removing object");
             var dto = new ReplicatorDTO();
             dto.Id = ni.Id;
             RemoteScene.Scene.Send<ReplicatorDTO>("RemoveObject", dto);
@@ -81,12 +86,16 @@ namespace Stormancer
         {
             var dto = packet.ReadObject<ReplicatorDTO>();
 
+            Debug.Log("creating object");
             if (dto.PrefabId < Prefabs.Count && SlaveObjects.ContainsKey(dto.Id) == false && MastersObjects.ContainsKey(dto.Id) == false)
             {
                 MainThread.Post(() =>
                 {
                     var SynchedGO = Instantiate(Prefabs[dto.PrefabId]);
-                    SlaveObjects.TryAdd(dto.Id, SynchedGO.GetComponent<StormancerNetworkIdentity>());
+                    var ni = SynchedGO.GetComponent<StormancerNetworkIdentity>();
+                    ni.Id = dto.Id;
+                    ni.PrefabId = dto.PrefabId;
+                    SlaveObjects.TryAdd(dto.Id, ni);
                 });
             }
         }
@@ -95,6 +104,7 @@ namespace Stormancer
         {
             var dto = packet.ReadObject<ReplicatorDTO>();
             StormancerNetworkIdentity DestroyedGO;
+            Debug.Log("destroying object");
 
             if (SlaveObjects.TryRemove(dto.Id, out DestroyedGO))
             {
@@ -133,10 +143,7 @@ namespace Stormancer
 
                 if (SlaveObjects.TryGetValue(id, out SO) && SBid < SO.SynchBehaviours.Count)
                 {
-                    MainThread.Post(() =>
-                    {
-                        SO.SynchBehaviours[SBid].ApplyChanges(packet.Stream);
-                    });
+                    SO.SynchBehaviours[SBid].ApplyChanges(packet.Stream);
                 }
             }
         }
@@ -147,13 +154,13 @@ namespace Stormancer
             {
                 foreach (KeyValuePair<uint, StormancerNetworkIdentity> kvp in MastersObjects)
                 {
-                    int i = 0;
+                    byte i = 0;
                     foreach (SynchBehaviourBase SB in kvp.Value.SynchBehaviours)
                     {
-                        if (SB.LastSend + SB.getTimeBetweenUpdates() < Clock.Clock)
+                        if (SB.LastSend + SB.timeBetweenUpdate < Clock.Clock)
                         {
                             SB.LastSend = Clock.Clock;
-                            RemoteScene.Scene.SendPacket("update_synchedObject", stream =>
+                            RemoteScene.Scene.SendPacket("UpdateSynchedObject", stream =>
                             {
                                 using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8))
                                 {

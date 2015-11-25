@@ -20,7 +20,7 @@ namespace Stormancer
             }
         }
 
-        public void OnAwake()
+        public void Awake()
         {
             RemoteScene.LocalLogics.Add(this);
         }
