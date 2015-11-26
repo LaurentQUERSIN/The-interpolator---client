@@ -5,6 +5,8 @@ using System;
 
 public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
 {
+    private bool ReceivedNewPos = false;
+
     private Vector3 _lastPos = Vector3.zero;
     private Vector3 _lastVect = Vector3.zero;
     private Quaternion _lastRot = Quaternion.identity;
@@ -63,10 +65,7 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
 
     public void SetNextPos(Vector3 pos, Vector3 vect, Quaternion rot)
     {
-        
-        _lastPos = transform.position;
-        _lastVect = _targetVect;
-        _lastRot = transform.rotation;
+        ReceivedNewPos = true;
 
         _targetPos = pos;
         _targetVect = vect;
@@ -83,6 +82,13 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
 
     void Update ()
     {
+        if (ReceivedNewPos == true)
+        {
+            _lastPos = transform.position;
+            _lastVect = _targetVect;
+            _lastRot = transform.rotation;
+            ReceivedNewPos = false;
+        }
         _currentSpan += Time.deltaTime;
         if (_currentSpan < _targetSpan)
         {

@@ -64,6 +64,7 @@ namespace Stormancer
                 Debug.Log("received registration");
                 dto = response.Result;
                 ni.Id = dto.Id;
+                ni.MasterId = RemoteScene.ClientProvider.Id.Value;
                 MastersObjects.TryAdd(dto.Id, ni);
                 if (SlaveObjects.ContainsKey(dto.Id))
                 {
@@ -79,7 +80,7 @@ namespace Stormancer
 
         public Task OnRequestObjects(RequestContext<IScenePeer> ctx)
         {
-            List<ReplicatorDTO> dtos = new List<ReplicatorDTO>();
+           List<ReplicatorDTO> dtos = new List<ReplicatorDTO>();
 
             foreach(StormancerNetworkIdentity ni in LocalObjectToSync)
             {
@@ -91,24 +92,30 @@ namespace Stormancer
 
                 dtos.Add(dto);
             }
-
             ctx.SendValue<List<ReplicatorDTO>>(dtos);
-
-            return Task.FromResult(true);
+            Debug.Log("receiving objects for new player. Sent " + dtos.Count + " objects.");
+            return TaskHelper.FromResult(true);
         }
 
-        public void OnPlayerDisconnected(Packet<IScenePeer> packet)
+        public void OnPlayerDisconnect(Packet<IScenePeer> packet)
         {
             var clientId = packet.ReadObject<long>();
+            int i = 0;
 
             foreach(StormancerNetworkIdentity ni in SlaveObjects.Values)
             {
                 if (ni.MasterId == clientId)
                 {
+                    i++;
                     StormancerNetworkIdentity trash;
                     SlaveObjects.TryRemove(ni.Id, out trash);
+                    MainThread.Post(() =>
+                    {
+                        Destroy(trash.gameObject);
+                    });
                 }
             }
+            Debug.Log("a player disconnected. Removed " + i + " objects");
         }
 
         public void RemoveSynchObject(StormancerNetworkIdentity ni)

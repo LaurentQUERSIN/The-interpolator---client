@@ -87,6 +87,7 @@
     <Compile Include="Assets\PlayerShip.cs" />
     <Compile Include="Assets\RemoteScene.cs" />
     <Compile Include="Assets\ReplicatorBehaviour.cs" />
+    <Compile Include="Assets\SimpleChatBehaviour.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\BigEndianBinary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\Binary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\CollectionDebuggerProxy`1.cs" />
