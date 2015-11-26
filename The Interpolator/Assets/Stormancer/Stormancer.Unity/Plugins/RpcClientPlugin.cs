@@ -160,7 +160,7 @@ namespace Stormancer.Plugins
                     p.Stream.Read(buffer, 0, 2);
                     var id = BitConverter.ToUInt16(buffer, 0);
                     var cts = new CancellationTokenSource();
-                    var ctx = new RequestContext<IScenePeer>(p.Connection, _scene, id, ordered,cts.Token);
+                    var ctx = new RequestContext<IScenePeer>(p.Connection, _scene, id, ordered, new SubStream(p.Stream, false),cts.Token);
                     if (_runningRequests.TryAdd(id, cts))
                     {
                         handler(ctx).ContinueWith(t =>

@@ -43,6 +43,14 @@ namespace Stormancer
         }
         private List<Scene> _scenes = new List<Scene>();
 
+        public long? Id
+        {
+            get
+            {
+                return _client.Id;
+            }
+        }
+
         public Scene GetPublicScene<T>(string sceneId, T data)
         {
             if (sceneId == "")

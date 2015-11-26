@@ -56,10 +56,7 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
             if (LastChanged < stamp)
             {
                 LastChanged = stamp;
-                Stormancer.MainThread.Post(() =>
-                {
                     SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
-                });
             }
         }
     }
@@ -79,9 +76,9 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
         P2 = _targetPos - _targetVect * _targetSpan / 3;
         _currentSpan = 0;
 
-       Debug.DrawLine(_lastPos, P1, Color.gray, 1.0f);
-       Debug.DrawLine(P1, P2, Color.gray, 1.0f);
-       Debug.DrawLine(P2, _targetPos, Color.gray, 1.0f);
+       //Debug.DrawLine(_lastPos, P1, Color.gray, 1.0f);
+       //Debug.DrawLine(P1, P2, Color.gray, 1.0f);
+       //Debug.DrawLine(P2, _targetPos, Color.gray, 1.0f);
     }
 
     void Update ()

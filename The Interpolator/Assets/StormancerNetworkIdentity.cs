@@ -9,6 +9,7 @@ namespace Stormancer
         public bool IsMaster = false;
         public uint Id;
         public int PrefabId;
+        public long MasterId;
 
         public List<SynchBehaviourBase> SynchBehaviours { get; set; }
         

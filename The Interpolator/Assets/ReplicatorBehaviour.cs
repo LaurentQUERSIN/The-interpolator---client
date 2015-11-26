@@ -16,6 +16,7 @@ namespace Stormancer
     {
         public uint Id;
         public int PrefabId;
+        public long ClientId;
     }
 
     public class ReplicatorBehaviour : StormancerIRemoteLogic
@@ -34,6 +35,8 @@ namespace Stormancer
             {
                 Debug.Log("replicator initializing");
                 Clock = s.DependencyResolver.GetComponent<IClock>();
+                s.AddProcedure("RequestObjects", OnRequestObjects);
+                s.AddRoute("PlayerDisconnected", OnPlayerDisconnect);
                 s.AddRoute("CreateObject", OnCreateObject);
                 s.AddRoute("DestroyObject", OnDestroyObject);
                 s.AddRoute("ForceUpdate", OnForceUpdate);
@@ -55,6 +58,7 @@ namespace Stormancer
             Debug.Log("sending registration request");
             var dto = new ReplicatorDTO();
             dto.PrefabId = ni.PrefabId;
+            dto.ClientId = RemoteScene.ClientProvider.Id.Value;
             RemoteScene.Scene.RpcTask<ReplicatorDTO, ReplicatorDTO>("RegisterObject", dto).ContinueWith(response =>
             {
                 Debug.Log("received registration");
@@ -73,11 +77,46 @@ namespace Stormancer
             });
         }
 
+        public Task OnRequestObjects(RequestContext<IScenePeer> ctx)
+        {
+            List<ReplicatorDTO> dtos = new List<ReplicatorDTO>();
+
+            foreach(StormancerNetworkIdentity ni in LocalObjectToSync)
+            {
+                ReplicatorDTO dto = new ReplicatorDTO();
+
+                dto.Id = ni.Id;
+                dto.PrefabId = ni.PrefabId;
+                dto.ClientId = RemoteScene.ClientProvider.Id.Value;
+
+                dtos.Add(dto);
+            }
+
+            ctx.SendValue<List<ReplicatorDTO>>(dtos);
+
+            return Task.FromResult(true);
+        }
+
+        public void OnPlayerDisconnected(Packet<IScenePeer> packet)
+        {
+            var clientId = packet.ReadObject<long>();
+
+            foreach(StormancerNetworkIdentity ni in SlaveObjects.Values)
+            {
+                if (ni.MasterId == clientId)
+                {
+                    StormancerNetworkIdentity trash;
+                    SlaveObjects.TryRemove(ni.Id, out trash);
+                }
+            }
+        }
+
         public void RemoveSynchObject(StormancerNetworkIdentity ni)
         {
             Debug.Log("removing object");
             var dto = new ReplicatorDTO();
             dto.Id = ni.Id;
+            dto.ClientId = RemoteScene.ClientProvider.Id.Value;
             RemoteScene.Scene.Send<ReplicatorDTO>("RemoveObject", dto);
             MastersObjects.TryRemove(ni.Id, out ni);
         }
@@ -95,6 +134,7 @@ namespace Stormancer
                     var ni = SynchedGO.GetComponent<StormancerNetworkIdentity>();
                     ni.Id = dto.Id;
                     ni.PrefabId = dto.PrefabId;
+                    ni.MasterId = dto.ClientId;
                     SlaveObjects.TryAdd(dto.Id, ni);
                 });
             }

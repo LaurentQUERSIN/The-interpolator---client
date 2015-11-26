@@ -15,7 +15,7 @@ namespace Stormancer
         public bool Connected = false;
 
 
-        private StormancerClientProvider _clientProvider;
+        public StormancerClientProvider ClientProvider;
         public Scene Scene;
 
         void Awake()
@@ -23,7 +23,7 @@ namespace Stormancer
             GameObject temp = GameObject.Find("StormancerNetworkManager");
             if (temp != null)
             {
-                _clientProvider = temp.GetComponent<StormancerClientProvider>();
+                ClientProvider = temp.GetComponent<StormancerClientProvider>();
                 
             }
             else
@@ -34,11 +34,11 @@ namespace Stormancer
 
         void Start()
         {
-            if (_clientProvider != null)
+            if (ClientProvider != null)
             {
                 if (IsPublic == true)
                 {
-                    Scene = _clientProvider.GetPublicScene(SceneId, "");
+                    Scene = ClientProvider.GetPublicScene(SceneId, "");
                 }
                 if (Scene != null)
                 {

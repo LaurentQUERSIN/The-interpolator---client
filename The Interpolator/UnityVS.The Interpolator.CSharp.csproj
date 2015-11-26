@@ -391,6 +391,7 @@
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Configuration\ClientConfiguration.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\Buffers.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\DictionaryExtension.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\RpcSceneHostExtensions.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\SceneExtensions.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\Extensions\StreamExtensions.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\IClock.cs" />
@@ -428,6 +429,7 @@
     <Compile Include="Assets\Stormancer\Stormancer.Unity\ScenePeer.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\StormanceEditorDataCollector.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\StormancerEditorPlugin.cs" />
+    <Compile Include="Assets\Stormancer\Stormancer.Unity\SubStream.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\ConnectedToSceneMsg.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\ConnectionResult.cs" />
     <Compile Include="Assets\Stormancer\Stormancer.Unity\SystemMessages\Empty.cs" />
