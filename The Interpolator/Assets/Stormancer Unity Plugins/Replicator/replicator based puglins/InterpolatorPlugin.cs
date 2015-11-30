@@ -20,17 +20,8 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
     private float _currentSpan;
     private float _targetSpan = 0.2f;
     
-    private bool _bezier = true;
-
-    public void UseBezierSpline(bool b)
-    {
-        _bezier = b;
-    }
-
-    private void SetTimeSpan(float t)
-    {
-        _targetSpan = t;
-    }
+    public bool Bezier = true;
+    public bool Extrapolate = true;
 
     public override void SendChanges(Stream stream)
     {
@@ -65,19 +56,17 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
 
     public void SetNextPos(Vector3 pos, Vector3 vect, Quaternion rot)
     {
+        Debug.Log(pos + "  ||  " + vect + "  ||  " + rot);
+        _targetSpan = ((float)timeBetweenUpdate) / 1000f;
         ReceivedNewPos = true;
+
+        _lastVect = _targetVect;
 
         _targetPos = pos;
         _targetVect = vect;
         _targetRot = rot;
 
-        P1 = _lastPos + _lastVect * _targetSpan / 3;
-        P2 = _targetPos - _targetVect * _targetSpan / 3;
         _currentSpan = 0;
-
-       //Debug.DrawLine(_lastPos, P1, Color.gray, 1.0f);
-       //Debug.DrawLine(P1, P2, Color.gray, 1.0f);
-       //Debug.DrawLine(P2, _targetPos, Color.gray, 1.0f);
     }
 
     void Update ()
@@ -85,15 +74,21 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
         if (ReceivedNewPos == true)
         {
             _lastPos = transform.position;
-            _lastVect = _targetVect;
             _lastRot = transform.rotation;
+            P1 = _lastPos + _lastVect * _targetSpan / 3;
+            P2 = _targetPos - _targetVect * _targetSpan / 3;
             ReceivedNewPos = false;
+            Debug.DrawLine(_lastPos, P1, Color.gray, 1.0f);
+            Debug.DrawLine(P1, P2, Color.gray, 1.0f);
+            Debug.DrawLine(P2, _targetPos, Color.gray, 1.0f);
         }
+
+
         _currentSpan += Time.deltaTime;
         if (_currentSpan < _targetSpan)
         {
             float perc = _currentSpan / _targetSpan;
-            if (_bezier == false)
+            if (Bezier == false)
                 transform.position = Vector3.Lerp(_lastPos, _targetPos, perc);
             else
             {
@@ -113,7 +108,7 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
             }
             transform.rotation = Quaternion.Lerp(_lastRot, _targetRot, perc);
         }
-        else
+        else if (Extrapolate == true)
         {
             _lastPos = transform.position;
             _lastVect = _targetVect;

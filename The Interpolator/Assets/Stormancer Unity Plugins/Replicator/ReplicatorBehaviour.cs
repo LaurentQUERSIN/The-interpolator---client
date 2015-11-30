@@ -21,6 +21,7 @@ namespace Stormancer
 
     public class ReplicatorBehaviour : StormancerIRemoteLogic
     {
+        public bool UseDebugGhost = false;
 
         public List<GameObject> Prefabs;
         public List<StormancerNetworkIdentity> LocalObjectToSync;
@@ -66,13 +67,25 @@ namespace Stormancer
                 ni.Id = dto.Id;
                 ni.MasterId = RemoteScene.ClientProvider.Id.Value;
                 MastersObjects.TryAdd(dto.Id, ni);
-                if (SlaveObjects.ContainsKey(dto.Id))
+                if (SlaveObjects.ContainsKey(dto.Id) && UseDebugGhost == false)
                 {
                     StormancerNetworkIdentity trash;
                     SlaveObjects.TryRemove(dto.Id, out trash);
                     MainThread.Post(() =>
                     {
                         Destroy(trash.gameObject);
+                    });
+                }
+                else if (SlaveObjects.ContainsKey(dto.Id) == false && UseDebugGhost == true)
+                {
+                    MainThread.Post(() =>
+                    {
+                        var SynchedGO = Instantiate(Prefabs[dto.PrefabId]);
+                        var slave = SynchedGO.GetComponent<StormancerNetworkIdentity>();
+                        slave.Id = dto.Id;
+                        slave.PrefabId = dto.PrefabId;
+                        slave.MasterId = dto.ClientId;
+                        SlaveObjects.TryAdd(dto.Id, slave);
                     });
                 }
             });

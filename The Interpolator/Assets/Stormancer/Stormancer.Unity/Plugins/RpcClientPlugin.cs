@@ -45,7 +45,7 @@ namespace Stormancer.Plugins
                 {
                     processor.Complete(p);
                 });
-
+                
 
             };
             ctx.SceneDisconnected += scene =>

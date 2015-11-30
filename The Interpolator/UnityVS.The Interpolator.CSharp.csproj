@@ -71,8 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ChatPanel.cs" />
-    <Compile Include="Assets\ConnectionDTO.cs" />
     <Compile Include="Assets\EditorCharts\BarChart.cs" />
     <Compile Include="Assets\EditorCharts\ClickResponder.cs" />
     <Compile Include="Assets\EditorCharts\Colors.cs" />
@@ -80,14 +78,16 @@
     <Compile Include="Assets\EditorCharts\PieChart.cs" />
     <Compile Include="Assets\EditorCharts\Samples\TestInspector.cs" />
     <Compile Include="Assets\EditorCharts\ViewMode.cs" />
-    <Compile Include="Assets\ISynchBehaviour.cs" />
-    <Compile Include="Assets\InterpolatorPlugin.cs" />
-    <Compile Include="Assets\LocalPlayer.cs" />
-    <Compile Include="Assets\NetworkManager.cs" />
     <Compile Include="Assets\PlayerShip.cs" />
-    <Compile Include="Assets\RemoteScene.cs" />
-    <Compile Include="Assets\ReplicatorBehaviour.cs" />
-    <Compile Include="Assets\SimpleChatBehaviour.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\RemoteScene.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\Replicator\ReplicatorBehaviour.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\Replicator\replicator based puglins\InterpolatorPlugin.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\Replicator\replicator based puglins\LocalPlayer.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\StormancerClientProvider.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\StormancerNetworkIdentity.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\base\ISynchBehaviour.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\base\StormancerIRemoteLogic.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\simple chat\SimpleChatBehaviour.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\BigEndianBinary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\Binary.cs" />
     <Compile Include="Assets\Stormancer\MsgPack\CollectionDebuggerProxy`1.cs" />
@@ -624,9 +624,6 @@
     <Compile Include="Assets\Stormancer\websocket-sharp\WebSocketState.cs" />
     <Compile Include="Assets\Stormancer\websocket-sharp\WsFrame.cs" />
     <Compile Include="Assets\Stormancer\websocket-sharp\WsStream.cs" />
-    <Compile Include="Assets\StormancerClientProvider.cs" />
-    <Compile Include="Assets\StormancerIRemoteLogic.cs" />
-    <Compile Include="Assets\StormancerNetworkIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\EditorCharts\AdditionLicenseInformation.txt" />

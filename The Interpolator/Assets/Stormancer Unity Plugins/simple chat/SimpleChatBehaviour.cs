@@ -11,6 +11,7 @@ namespace Stormancer.Chat
 {
     public class ChatUserInfo
     {
+        public long ClientId;
         public string User;
     }
 
@@ -38,6 +39,8 @@ namespace Stormancer.Chat
         public override void Init(Scene s)
         {
             s.AddRoute("chat", OnChat);
+            s.AddRoute("UpdateInfo", OnUpdateInfo);
+            s.AddRoute("DiscardInfo", OnDiscardInfo);
             SendBtn.onClick.AddListener(OnSendMessage);
             chatSlider.onValueChanged.AddListener(ShowMessages);
             Infos = new ChatUserInfo();
@@ -49,26 +52,40 @@ namespace Stormancer.Chat
             RemoteScene.Scene.Send<ChatUserInfo>("UpdateInfo", Infos);
         }
 
+        public void OnUpdateInfo(Packet<IScenePeer> packet)
+        {
+            Debug.Log("client send update info");
+            return;
+        }
+
+        public void OnDiscardInfo(Packet<IScenePeer> packet)
+        {
+            Debug.Log("cleint disconnected");
+            return;
+        }
+
         public void OnChat(Packet<IScenePeer> packet)
         {
             ChatMessageDTO dto;
 
             dto = packet.ReadObject<ChatMessageDTO>();
-            if (dto.UserInfo == null)
+            if (dto.UserInfo.User == "")
             {
-                dto.UserInfo = new ChatUserInfo();
-                dto.UserInfo.User = "John Doe";
+                dto.UserInfo.User = "annonymous" + dto.UserInfo.ClientId;
             }
             string message = dto.UserInfo.User + ": " + dto.Message + "\b";
             ReceiverPump.Enqueue(message);
-
+            messageReceived = true;
         }
 
         public void OnSendMessage()
         {
-            var message = PlayerTxt.text;
-            RemoteScene.Scene.Send<string>("chat", message);
-            PlayerTxt.text = "";
+            if (PlayerTxt.text != "")
+            {
+                var message = PlayerTxt.text;
+                RemoteScene.Scene.Send<string>("chat", message);
+                PlayerTxt.text = "";
+            }
         }
 
         public void ShowMessages(float flt)
@@ -77,7 +94,7 @@ namespace Stormancer.Chat
             int j;
 
             j = 0;
-            i = MessagePump.Count - (int)chatSlider.value;
+            i = MessagePump.Count - messageToShowNbr - (int)chatSlider.value;
             if (i < 0)
             {
                 i = 0;
@@ -85,9 +102,10 @@ namespace Stormancer.Chat
 
             ChatTxt.text = "";
 
-            while (i + j < MessagePump.Count - 1 && j < messageToShowNbr)
+            while (i + j < MessagePump.Count && j < messageToShowNbr)
             {
-                ChatTxt.text += MessagePump[i + j] + "\b";
+                ChatTxt.text += MessagePump[i + j] + "\n";
+                j++;
             }
         }
 
@@ -95,6 +113,7 @@ namespace Stormancer.Chat
         {
             if (messageReceived == true)
             {
+                messageReceived = false;
                 string temp;
                 while (ReceiverPump.Count > 0)
                 {

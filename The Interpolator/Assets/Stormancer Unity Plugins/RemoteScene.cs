@@ -75,7 +75,7 @@ namespace Stormancer
             });
         }
 
-        void OnLoading()
+        void OnLoad()
         {
             if (DisconnectOnLoad == true)
                 Scene.Disconnect();
