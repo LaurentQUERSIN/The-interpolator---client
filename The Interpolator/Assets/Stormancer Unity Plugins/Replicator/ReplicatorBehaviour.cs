@@ -59,13 +59,13 @@ namespace Stormancer
             Debug.Log("sending registration request");
             var dto = new ReplicatorDTO();
             dto.PrefabId = ni.PrefabId;
-            dto.ClientId = RemoteScene.ClientProvider.Id.Value;
+            dto.ClientId = ClientProvider.GetClientId();
             RemoteScene.Scene.RpcTask<ReplicatorDTO, ReplicatorDTO>("RegisterObject", dto).ContinueWith(response =>
             {
                 Debug.Log("received registration");
                 dto = response.Result;
                 ni.Id = dto.Id;
-                ni.MasterId = RemoteScene.ClientProvider.Id.Value;
+                ni.MasterId = ClientProvider.GetClientId();
                 MastersObjects.TryAdd(dto.Id, ni);
                 if (SlaveObjects.ContainsKey(dto.Id) && UseDebugGhost == false)
                 {
@@ -101,7 +101,7 @@ namespace Stormancer
 
                 dto.Id = ni.Id;
                 dto.PrefabId = ni.PrefabId;
-                dto.ClientId = RemoteScene.ClientProvider.Id.Value;
+                dto.ClientId = ClientProvider.GetClientId(); ;
 
                 dtos.Add(dto);
             }
@@ -136,7 +136,7 @@ namespace Stormancer
             Debug.Log("removing object");
             var dto = new ReplicatorDTO();
             dto.Id = ni.Id;
-            dto.ClientId = RemoteScene.ClientProvider.Id.Value;
+            dto.ClientId = ClientProvider.GetClientId(); ;
             RemoteScene.Scene.Send<ReplicatorDTO>("RemoveObject", dto);
             MastersObjects.TryRemove(ni.Id, out ni);
         }

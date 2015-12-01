@@ -19,6 +19,7 @@ namespace Stormancer.Chat
     {
         public ChatUserInfo UserInfo;
         public string Message;
+        public long TimeStamp;
     }
 
     public class SimpleChatBehaviour : StormancerIRemoteLogic

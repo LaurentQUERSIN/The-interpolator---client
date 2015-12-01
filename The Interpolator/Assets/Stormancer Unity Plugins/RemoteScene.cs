@@ -13,45 +13,23 @@ namespace Stormancer
         public bool DisconnectOnLoad = true;
         public List<StormancerIRemoteLogic> LocalLogics = new List<StormancerIRemoteLogic>();
         public bool Connected = false;
-
-
-        public StormancerClientProvider ClientProvider;
+        
         public Scene Scene;
-
-        void Awake()
-        {
-            GameObject temp = GameObject.Find("StormancerNetworkManager");
-            if (temp != null)
-            {
-                ClientProvider = temp.GetComponent<StormancerClientProvider>();
-                
-            }
-            else
-            {
-                Debug.LogError("cannot find StormancerNetworkManager");
-            }
-        }
 
         void Start()
         {
-            if (ClientProvider != null)
+
+            if (IsPublic == true)
             {
-                if (IsPublic == true)
-                {
-                    Scene = ClientProvider.GetPublicScene(SceneId, "");
-                }
-                if (Scene != null)
-                {
-                    foreach(StormancerIRemoteLogic logic in LocalLogics)
-                    {
-                        logic.Init(Scene);
-                    }
-                    ConnectScene();
-                }
+                Scene = ClientProvider.GetPublicScene(SceneId, "");
             }
-            else
+            if (Scene != null)
             {
-                Debug.LogError("Cannot find StormancerNetworkManager");
+                foreach (StormancerIRemoteLogic logic in LocalLogics)
+                {
+                    logic.Init(Scene);
+                }
+                ConnectScene();
             }
         }
 

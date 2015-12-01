@@ -79,6 +79,7 @@
     <Compile Include="Assets\EditorCharts\Samples\TestInspector.cs" />
     <Compile Include="Assets\EditorCharts\ViewMode.cs" />
     <Compile Include="Assets\PlayerShip.cs" />
+    <Compile Include="Assets\Stormancer Unity Plugins\ClientProvider.cs" />
     <Compile Include="Assets\Stormancer Unity Plugins\RemoteScene.cs" />
     <Compile Include="Assets\Stormancer Unity Plugins\Replicator\ReplicatorBehaviour.cs" />
     <Compile Include="Assets\Stormancer Unity Plugins\Replicator\replicator based puglins\InterpolatorPlugin.cs" />
