@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Stormancer
 {
-    public abstract class SynchBehaviourBase : MonoBehaviour
+    public abstract class SyncBehaviourBase : MonoBehaviour
     {
         //Unity
         public long timeBetweenUpdate = 200;

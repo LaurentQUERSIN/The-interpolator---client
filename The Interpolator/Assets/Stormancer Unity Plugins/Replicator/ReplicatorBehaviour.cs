@@ -19,7 +19,7 @@ namespace Stormancer
         public long ClientId;
     }
 
-    public class ReplicatorBehaviour : StormancerIRemoteLogic
+    public class ReplicatorBehaviour : RemoteLogicBase
     {
         public bool UseDebugGhost = false;
 
@@ -80,8 +80,15 @@ namespace Stormancer
                 {
                     MainThread.Post(() =>
                     {
-                        var SynchedGO = Instantiate(Prefabs[dto.PrefabId]);
-                        var slave = SynchedGO.GetComponent<StormancerNetworkIdentity>();
+                        var synchedGO = Instantiate(Prefabs[dto.PrefabId]);
+
+                        var collider = synchedGO.GetComponent<Collider>();
+                        if (collider != null)
+                        {
+                            collider.enabled = false;
+                        }
+
+                        var slave = synchedGO.GetComponent<StormancerNetworkIdentity>();
                         slave.Id = dto.Id;
                         slave.PrefabId = dto.PrefabId;
                         slave.MasterId = dto.ClientId;
@@ -215,7 +222,7 @@ namespace Stormancer
                 foreach (KeyValuePair<uint, StormancerNetworkIdentity> kvp in MastersObjects)
                 {
                     byte i = 0;
-                    foreach (SynchBehaviourBase SB in kvp.Value.SynchBehaviours)
+                    foreach (SyncBehaviourBase SB in kvp.Value.SynchBehaviours)
                     {
                         if (SB.LastSend + SB.timeBetweenUpdate < Clock.Clock)
                         {
@@ -224,6 +231,7 @@ namespace Stormancer
                             {
                                 using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8))
                                 {
+                                    writer.Write((byte)SB.Reliability);
                                     writer.Write(kvp.Key);
                                     writer.Write(i);
                                     SB.SendChanges(stream);

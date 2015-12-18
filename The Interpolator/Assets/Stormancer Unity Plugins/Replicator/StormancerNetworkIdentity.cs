@@ -11,12 +11,12 @@ namespace Stormancer
         public int PrefabId;
         public long MasterId;
 
-        public List<SynchBehaviourBase> SynchBehaviours { get; set; }
+        public List<SyncBehaviourBase> SynchBehaviours { get; set; }
         
         void Awake()
         {
-            SynchBehaviours = new List<SynchBehaviourBase>(this.GetComponents<SynchBehaviourBase>());
-            Debug.Log("create network identity with " + SynchBehaviours.Count + " behaviours");
+            SynchBehaviours = new List<SyncBehaviourBase>(this.GetComponents<SyncBehaviourBase>());
+            Debug.Log("created network identity with " + SynchBehaviours.Count + " behaviours");
         } 
     }
 }

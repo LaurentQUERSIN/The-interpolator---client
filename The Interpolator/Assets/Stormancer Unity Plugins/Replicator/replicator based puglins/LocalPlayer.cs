@@ -3,11 +3,19 @@ using System.Collections;
 using System.IO;
 using System;
 
-public class LocalPlayer : Stormancer.SynchBehaviourBase
+public class LocalPlayer : Stormancer.SyncBehaviourBase
 {
     public Stormancer.RemoteScene Scene;
     private Stormancer.IClock Clock;
     private Rigidbody PlayerRigidbody;
+
+    public bool SendPositionX = true;
+    public bool SendPositionY = true;
+    public bool SendPositionZ = true;
+
+    public bool SendRotationX = true;
+    public bool SendRotationY = true;
+    public bool SendRotationZ = true;
 
     public override void SendChanges(Stream stream)
     {
@@ -23,18 +31,28 @@ public class LocalPlayer : Stormancer.SynchBehaviourBase
         {
 
             writer.Write(Clock.Clock);
-            writer.Write(this.transform.position.x);
-            writer.Write(this.transform.position.y);
-            writer.Write(this.transform.position.z);
+            if (SendPositionX == true)
+                writer.Write(this.transform.position.x);
+            if (SendPositionY == true)
+                writer.Write(this.transform.position.y);
+            if (SendPositionZ == true)
+                writer.Write(this.transform.position.z);
 
-            writer.Write(PlayerRigidbody.velocity.x);
-            writer.Write(PlayerRigidbody.velocity.y);
-            writer.Write(PlayerRigidbody.velocity.z);
+            if (SendPositionX == true)
+                writer.Write(PlayerRigidbody.velocity.x);
+            if (SendPositionY == true)
+                writer.Write(PlayerRigidbody.velocity.y);
+            if (SendPositionZ == true)
+                writer.Write(PlayerRigidbody.velocity.z);
 
-            writer.Write(this.transform.rotation.x);
-            writer.Write(this.transform.rotation.y);
-            writer.Write(this.transform.rotation.z);
-            writer.Write(this.transform.rotation.w);
+            var rot = this.transform.rotation.eulerAngles;
+
+            if (SendRotationX == true)
+                writer.Write(rot.x);
+            if (SendRotationY == true)
+                writer.Write(rot.y);
+            if (SendRotationZ == true)
+                writer.Write(rot.z);
         }
     }
 

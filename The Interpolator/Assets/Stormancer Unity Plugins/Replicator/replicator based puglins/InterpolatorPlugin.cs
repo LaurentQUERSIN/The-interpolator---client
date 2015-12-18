@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections;
 using System;
 
-public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
+public class InterpolatorPlugin : Stormancer.SyncBehaviourBase
 {
     private bool ReceivedNewPos = false;
 
@@ -23,6 +23,14 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
     public bool Bezier = true;
     public bool Extrapolate = true;
 
+    public bool ReceivePositionX = true;
+    public bool ReceivePositionY = true;
+    public bool ReceivePositionZ = true;
+
+    public bool ReceiveRotationX = true;
+    public bool ReceiveRotationY = true;
+    public bool ReceiveRotationZ = true;
+
     public override void SendChanges(Stream stream)
     {
         return;
@@ -33,23 +41,47 @@ public class InterpolatorPlugin : Stormancer.SynchBehaviourBase
         using (var reader = new BinaryReader(stream))
         {
             var stamp = reader.ReadInt64();
-            var x = reader.ReadSingle();
-            var y = reader.ReadSingle();
-            var z = reader.ReadSingle();
 
-            var vx = reader.ReadSingle();
-            var vy = reader.ReadSingle();
-            var vz = reader.ReadSingle();
+            float x = 0;
+            float y = 0;
+            float z = 0;
 
-            var rx = reader.ReadSingle();
-            var ry = reader.ReadSingle();
-            var rz = reader.ReadSingle();
-            var rw = reader.ReadSingle();
-            
+            if (ReceivePositionX == true)
+                x = reader.ReadSingle();
+            if (ReceivePositionY == true)
+                y = reader.ReadSingle();
+            if (ReceivePositionZ == true)
+                z = reader.ReadSingle();
+
+            float vx = 0;
+            float vy = 0;
+            float vz = 0;
+
+            if (ReceivePositionX == true)
+                vx = reader.ReadSingle();
+            if (ReceivePositionY == true)
+                vy = reader.ReadSingle();
+            if (ReceivePositionZ == true)
+                vz = reader.ReadSingle();
+
+            float rx = 0;
+            float ry = 0;
+            float rz = 0;
+
+            if (ReceiveRotationX == true)
+                rx = reader.ReadSingle();
+            if (ReceiveRotationY == true)
+                ry = reader.ReadSingle();
+            if (ReceiveRotationZ == true)
+                rz = reader.ReadSingle();
+
+            var rot = new Quaternion();
+            rot = Quaternion.Euler(rx, ry, rz);
+
             if (LastChanged < stamp)
             {
                 LastChanged = stamp;
-                    SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), new Quaternion(rx, ry, rz, rw));
+                    SetNextPos(new Vector3(x, y, z), new Vector3(vx, vy, vz), rot);
             }
         }
     }

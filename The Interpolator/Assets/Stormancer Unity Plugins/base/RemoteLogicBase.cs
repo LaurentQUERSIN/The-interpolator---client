@@ -5,7 +5,7 @@ using Stormancer.Core;
 
 namespace Stormancer
 {
-    public abstract class StormancerIRemoteLogic : MonoBehaviour
+    public abstract class RemoteLogicBase : MonoBehaviour
     {
         public RemoteScene RemoteScene;
         private long Clock
@@ -22,7 +22,10 @@ namespace Stormancer
 
         public void Awake()
         {
-            RemoteScene.LocalLogics.Add(this);
+            if (RemoteScene == null)
+                Debug.LogWarning("Remote has not been set on a remoteLogic !");
+            else
+                RemoteScene.LocalLogics.Add(this);
         }
 
         public abstract void Init(Scene s);

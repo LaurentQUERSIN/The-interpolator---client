@@ -22,7 +22,7 @@ namespace Stormancer.Chat
         public long TimeStamp;
     }
 
-    public class SimpleChatBehaviour : StormancerIRemoteLogic
+    public class SimpleChatBehaviour : RemoteLogicBase
     {
         public Text ChatTxt;
         public InputField PlayerTxt;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stormancer
 {
-    public class StormancerClientProvider : MonoBehaviour
+    public class ClientBehaviour : MonoBehaviour
     {
         public string AccountId = "";
         public string ApplicationName = "";
